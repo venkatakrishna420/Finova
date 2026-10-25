@@ -1,0 +1,27 @@
+{
+  "name": "finova",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Finova — A Kite-inspired stock market paper-trading simulator",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n client,server -c blue,green \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "build": "npm run build --workspace=client && npm run build --workspace=server",
+    "typecheck": "npm run typecheck --workspace=client && npm run typecheck --workspace=server",
+    "db:generate": "npx prisma generate",
+    "db:migrate": "npx prisma migrate dev",
+    "db:push": "npx prisma db push",
+    "postinstall": "npx prisma generate"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.6.0",
+    "prisma": "^6.1.0",
+    "tsx": "^4.19.0"
+  }
+}
